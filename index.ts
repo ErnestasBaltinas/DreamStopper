@@ -65,7 +65,7 @@ const serverSay = (msg: String) => {
 };
 
 app.listen(port, () => {
-	serverSay(`Server is running at PORT: ${port}`);
+	serverSay(`Server is running at PORT: ${port} < TS`);
 	console.log('---------------------------------------------');
 	stopDreams();
 });

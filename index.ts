@@ -18,12 +18,13 @@ app.get('/', function (req, res) {
 });
 
 const stopDreams = () => {
-	serverSay('Starting to interrupt Dreams');
+	serverSay(`Starting to interrupt Dreams of '${targetUrl}'`);
 	const rule = new schedule.RecurrenceRule();
 	rule.minute = [0, 10, 20, 30, 40, 50];
 	rule.second = 0;
 
 	schedule.scheduleJob(rule, () => {
+		serverSay(`Lets gooo '${targetUrl}'`);
 		if (targetUrl) {
 			wakeUpCall(targetUrl);
 		} else {
@@ -65,7 +66,11 @@ const serverSay = (msg: String) => {
 };
 
 app.listen(port, () => {
-	serverSay(`Server is running at PORT: ${port} < TS`);
+	serverSay(`Server is running at PORT: ${port}`);
 	console.log('---------------------------------------------');
 	stopDreams();
+
+	setInterval(() => {
+		serverSay('setInterval wup wup');
+	}, 60000);
 });

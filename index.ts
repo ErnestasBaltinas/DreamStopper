@@ -58,6 +58,10 @@ const serverSay = (msg: String) => {
 	console.log(`⚡️[DreamStopper]: ${msg}`);
 };
 
+app.get('/', (req, res) => {
+	res.json('Ready to stop some Dreams');
+});
+
 app.listen(port, () => {
 	serverSay(`Server is running at PORT: ${port}`);
 	console.log('---------------------------------------------');

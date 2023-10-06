@@ -24,7 +24,7 @@ const stopDreams = () => {
 	rule.second = 0;
 
 	schedule.scheduleJob(rule, () => {
-		serverSay(`Lets gooo '${targetUrl}'`);
+		serverSay(`Schedule POP '${targetUrl}'`);
 		if (targetUrl) {
 			wakeUpCall(targetUrl);
 		} else {
@@ -34,6 +34,7 @@ const stopDreams = () => {
 };
 
 const wakeUpCall = (target: string) => {
+	serverSay(`Lets gooo '${target}'`);
 	if (targetUrl) {
 		axios
 			.get(target)
@@ -71,6 +72,7 @@ app.listen(port, () => {
 	stopDreams();
 
 	setInterval(() => {
-		serverSay('setInterval wup wup');
-	}, 60000);
+		serverSay('SetInterval wup wup');
+		wakeUpCall(targetUrl ?? '');
+	}, 1000 * 60 * 5);
 });

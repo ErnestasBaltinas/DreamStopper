@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import dotenv from 'dotenv';
 import schedule from 'node-schedule';
 import axios, { AxiosResponse } from 'axios';
+import path from 'path';
 
 dotenv.config();
 
@@ -10,6 +11,11 @@ const port = process.env.PORT;
 const targetUrl = process.env.URL;
 let stoppedDreams = 0;
 let stoppedDreamsInARow = 0;
+
+app.use(express.static('public'));
+app.get('/', function (req, res) {
+	res.send('Ready to stop some Dreams');
+});
 
 const stopDreams = () => {
 	serverSay('Starting to interrupt Dreams');
@@ -57,10 +63,6 @@ const wakeUpCall = (target: string) => {
 const serverSay = (msg: String) => {
 	console.log(`⚡️[DreamStopper]: ${msg}`);
 };
-
-app.get('/', (req, res) => {
-	res.json('Ready to stop some Dreams');
-});
 
 app.listen(port, () => {
 	serverSay(`Server is running at PORT: ${port}`);
